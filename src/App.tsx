@@ -2,19 +2,58 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import {
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import { Home } from "./Home"
+
+
+
+const Setup = () => {
+  return (
+    <h3>
+      Setup
+    </h3>
+  );
+};
+
+const Play = () => {
+  return (
+    <>
+      <h3>
+        Play
+      </h3>
+      <p>
+        Play the game and tap the app!
+      </p>
+    </>
+  );
+};
+
+
+const App = () => {
+
+  const router = createHashRouter([
+    {
+      path: "/",
+      element: <Home />
+    },
+    {
+      path: "/",
+      element: <Setup />
+    },
+    {
+      path: "/",
+      element: <Play />
+    }
+  ]);
+
+
   return (
     <div className="App p-3">
-      <button className="btn">Hello daisyUI</button>
-      <div className="card bg-base-100 shadow-lg">
-        <div className="card-body">
-          <h2 className="card-title">Card title!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
+        <RouterProvider router={router} />
     </div>
   );
 }
