@@ -18,15 +18,15 @@ const App = () => {
   const router = createHashRouter([
     {
       path: "/",
-      element: <Home />
+      element: <Home/>
     },
     {
       path: "/",
-      element: <Setup />
+      element: <Setup/>
     },
     {
       path: "/",
-      element: <Play />
+      element: <Play/>
     }
   ]);
 
