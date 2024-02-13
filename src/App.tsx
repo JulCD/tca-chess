@@ -21,11 +21,11 @@ const App = () => {
       element: <Home/>
     },
     {
-      path: "/",
+      path: "/setup",
       element: <Setup/>
     },
     {
-      path: "/",
+      path: "/play",
       element: <Play/>
     }
   ]);

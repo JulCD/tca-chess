@@ -13,7 +13,7 @@ export const Setup = () => {
             </h3>
             <button 
                 className="btn btn-link"
-                onClick={() => nav('./play')}
+                onClick={() => nav('/play')}
             >
                 Start the Game
             </button>
