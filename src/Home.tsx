@@ -59,7 +59,7 @@ export const Home: FC<HomeProps> = ({ leaderboardData }) => {
                                                     {lbe.losses}
                                                 </td>
                                                 <td>
-                                                    {(lbe.avg).toFixed(2)}
+                                                    {lbe.avg.toFixed(2)}
                                                 </td>
                                                 <td>
                                                     {lbe.name}
