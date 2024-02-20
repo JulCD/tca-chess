@@ -34,6 +34,15 @@ export const Home: FC<HomeProps> = ({ leaderboardData }) => {
                     >
                         Leaderboard
                     </h2>
+                    {
+                        leaderboardData.map(x => (
+                            <p>
+                                {
+                                    x.name
+                                }
+                            </p>
+                        ))
+                    }
                 </div>
             </div>
         </>
