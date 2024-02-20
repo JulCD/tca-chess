@@ -52,8 +52,6 @@ const dummyGameResults: GameResult[] = [
   }
 ];
 
-
-
 const App = () => {
 
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);

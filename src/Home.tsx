@@ -35,13 +35,19 @@ export const Home: FC<HomeProps> = ({ leaderboardData }) => {
                         Leaderboard
                     </h2>
                     {
-                        leaderboardData.map(x => (
+                        leaderboardData.length > 0
+                        ? leaderboardData.map(x => (
                             <p>
                                 {
                                     x.name
                                 }
                             </p>
                         ))
+                        : (
+                            <p>
+                                Play a game to see the leaderboard!
+                            </p>
+                        )
                     }
                 </div>
             </div>
