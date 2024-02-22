@@ -16,16 +16,15 @@ export const Setup: FC<SetupProps> = ({ setTitle }) => {
     const nav = useNavigate();
     
     return (
-        <>
-            <h3>
-                Setup
-            </h3>
+        <div
+            className='flex flex-col gap-3'
+        >
             <button 
-                className="btn btn-link"
+                className="btn btn-lg btn-primary"
                 onClick={() => nav('/play')}
             >
                 Start the Game
             </button>
-        </>
+        </div>
     );
 };

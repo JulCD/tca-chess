@@ -19,15 +19,11 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
     const nav = useNavigate();
 
     return (
-      <>
-        <h3>
-          Play
-        </h3>
-        <p>
-          Play the game and tap the app!
-        </p>
+      <div
+        className="flex flex-col gap-3"
+      >
         <button 
-            className="btn btn-outline btn-primary"
+            className="btn btn-lg btn-primary"
             onClick={() => {
               addNewGameResult({
                 winner: "Tom"
@@ -41,6 +37,11 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
         >
             Done!
         </button>
-      </>
+        <p
+          className="text-xs"
+        >
+          Play the game and tap the app!
+        </p>
+      </div>
     );
 };

@@ -19,18 +19,18 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
     const nav = useNavigate();
 
     return (
-        <>
-            <h3>
-                Home
-            </h3>
+        <div
+            className="flex flex-col gap-3"
+        >
+
             <button
-                className="btn btn-secondary"
+                className="btn btn-lg btn-primary"
                 onClick={() => nav('./setup')}
             >
                 Play
             </button>
             <div
-                className="card mt-3 bg-base-100 shadow-xl"
+                className="card bg-base-100 shadow-xl"
             >
                 <div
                     className="card-body"
@@ -86,6 +86,6 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                     }
                 </div>
             </div>
-        </>
+        </div>
     );
 };
