@@ -14,47 +14,49 @@ import { GameResult, getLeaderboard } from './GameResults';
 
 const dummyGameResults: GameResult[] = [
   {
-      winner: "Tom"
-      , players: [
-          "Tom"
-          , "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
+    winner: "Tom"
+    , players: [
+      "Tom"
+      , "Batu"
+      , "Julia"
+      , "Melisa"
+      , "John"
+    ]
   }
   , {
-      winner: "John"
-      , players: [
-          "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
+    winner: "John"
+    , players: [
+      "Batu"
+      , "Julia"
+      , "Melisa"
+      , "John"
+    ]
   }
   , {
-      winner: "John"
-      , players: [
-          "Tom"
-          , "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
-  }    
+    winner: "John"
+    , players: [
+      "Tom"
+      , "Batu"
+      , "Julia"
+      , "Melisa"
+      , "John"
+    ]
+  }
   , {
-      winner: "Harry"
-      , players: [
-          "Harry"
-          , "hermione"
-          , "Ron"
-      ]
+    winner: "Harry"
+    , players: [
+      "Harry"
+      , "hermione"
+      , "Ron"
+    ]
   }
 ];
 
 const App = () => {
 
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+
+  const [title, setTitle] = useState("Chess Companion App");
 
   const addNewGameResult = (result: GameResult) => setGameResults(
     [
@@ -72,7 +74,7 @@ const App = () => {
     },
     {
       path: "/setup",
-      element: <Setup/>
+      element: <Setup />
     },
     {
       path: "/play",
@@ -84,8 +86,15 @@ const App = () => {
 
 
   return (
-    <div className="App p-3">
+    <div className="App">
+      <div className='navbar bg-base-300'>
+        <span className='text-lg font-bold'>
+          { title }
+        </span>
+      </div>
+      <div className='p-3'>
         <RouterProvider router={router} />
+      </div>
     </div>
   );
 }
