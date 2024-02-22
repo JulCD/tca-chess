@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { LeaderboardEntry } from "./GameResults";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+
+export const AppTitle = "Chess Companion App";
 
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
+    setTitle: (t: string) => void;
 }
 
-export const Home: FC<HomeProps> = ({ leaderboardData }) => {
+export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
+
+    useEffect(
+        () => setTitle(AppTitle)
+        , []
+    );
 
     const nav = useNavigate();
 
