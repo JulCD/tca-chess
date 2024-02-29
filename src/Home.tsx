@@ -38,51 +38,102 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                     <h2
                         className="card-title"
                     >
+                        General
+                    </h2>
+                    <table
+                        className="table"
+                    >
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Total Games
+                                </td>
+                                <td>
+                                    10
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Last Played
+                                </td>
+                                <td>
+                                    2 days ago
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Shortest Game
+                                </td>
+                                <td>
+                                    2m 25s
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Longest Game
+                                </td>
+                                <td>
+                                    12m 30s
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div
+                className="card bg-base-100 shadow-xl"
+            >
+                <div
+                    className="card-body p-3"
+                >
+                    <h2
+                        className="card-title"
+                    >
                         Leaderboard
                     </h2>
                     {
                         leaderboardData.length > 0
-                        ? (
-                            <table
-                                className="table"
-                            >
-                                <thead>
-                                    <tr>
-                                        <th>Wins</th>
-                                        <th>Losses</th>
-                                        <th>Avg.</th>
-                                        <th>Player</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        leaderboardData.map(lbe => (
-                                            <tr
-                                                key={lbe.name}
-                                            >
-                                                <td>
-                                                    {lbe.wins}
-                                                </td>
-                                                <td>
-                                                    {lbe.losses}
-                                                </td>
-                                                <td>
-                                                    {lbe.avg.toFixed(2)}
-                                                </td>
-                                                <td>
-                                                    {lbe.name}
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                        )
-                        : (
-                            <p>
-                                Play a game to see the leaderboard!
-                            </p>
-                        )
+                            ? (
+                                <table
+                                    className="table"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th>Wins</th>
+                                            <th>Losses</th>
+                                            <th>Avg.</th>
+                                            <th>Player</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            leaderboardData.map(lbe => (
+                                                <tr
+                                                    key={lbe.name}
+                                                >
+                                                    <td>
+                                                        {lbe.wins}
+                                                    </td>
+                                                    <td>
+                                                        {lbe.losses}
+                                                    </td>
+                                                    <td>
+                                                        {lbe.avg.toFixed(2)}
+                                                    </td>
+                                                    <td>
+                                                        {lbe.name}
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                            : (
+                                <p>
+                                    Play a game to see the leaderboard!
+                                </p>
+                            )
                     }
                 </div>
             </div>
