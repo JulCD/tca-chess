@@ -14,6 +14,13 @@ export type LeaderboardEntry = {
     name: string;
 };
 
+export type GeneralFacts = {
+    totalGames: number;
+    lastPlayed: string;
+    shortestGame: string;
+    longestGame: string;
+};
+
 
 // External Functions...
 
@@ -45,6 +52,36 @@ export const getLeaderboard = (results: GameResult[]): LeaderboardEntry[] => {
     );
 };
 
+export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
+
+    const now = Date.now();
+
+    const gameEndDatesInMilliseconds = results.map(
+        x => Date.parse(x.end)
+    );
+
+    const gameDurationsInMilliseconds = results.map(
+        x => Date.parse(x.end) - Date.parse(x.start)
+    );
+
+    return {
+        totalGames: results.length
+        , lastPlayed: (
+            (
+                now - Math.max(...gameEndDatesInMilliseconds)
+            ) / 1000 / 60 / 60 / 24 // days
+        ).toFixed(2)
+        , shortestGame: (
+            Math.min(...gameDurationsInMilliseconds)
+             / 1000 / 60 // minutes
+        ).toFixed(2)
+        , longestGame: (
+            Math.max(...gameDurationsInMilliseconds)
+             / 1000 / 60 // minutes
+        ).toFixed(2)
+    };
+};
+
 // Internal Functions...
 
 const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): LeaderboardEntry => {
@@ -67,4 +104,6 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
         , name: player
     };
 };
+
+
 

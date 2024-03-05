@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { LeaderboardEntry } from "./GameResults";
+import { GeneralFacts, LeaderboardEntry } from "./GameResults";
 import { FC, useEffect } from "react";
 
 export const AppTitle = "Chess Companion App";
@@ -7,9 +7,14 @@ export const AppTitle = "Chess Companion App";
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
+    generalFacts: GeneralFacts;
 }
 
-export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
+export const Home: FC<HomeProps> = ({ 
+    leaderboardData
+    , setTitle
+    , generalFacts
+ }) => {
 
     useEffect(
         () => setTitle(AppTitle)
@@ -49,7 +54,7 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                                     Total Games
                                 </td>
                                 <td>
-                                    10
+                                    {generalFacts.totalGames}
                                 </td>
                             </tr>
                             <tr>
@@ -57,7 +62,7 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                                     Last Played
                                 </td>
                                 <td>
-                                    2 days ago
+                                    {generalFacts.lastPlayed}d ago
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +70,7 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                                     Shortest Game
                                 </td>
                                 <td>
-                                    2m 25s
+                                    {generalFacts.shortestGame}m
                                 </td>
                             </tr>
                             <tr>
@@ -73,7 +78,7 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                                     Longest Game
                                 </td>
                                 <td>
-                                    12m 30s
+                                    {generalFacts.longestGame}m
                                 </td>
                             </tr>
                         </tbody>

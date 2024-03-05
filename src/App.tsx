@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import {
@@ -10,7 +9,7 @@ import {
 import { Home, AppTitle } from "./Home"
 import { Setup } from "./Setup"
 import { Play } from "./Play"
-import { GameResult, getLeaderboard } from './GameResults';
+import { GameResult, getLeaderboard, getGeneralFacts } from './GameResults';
 
 
 const dummyGameResults: GameResult[] = [
@@ -57,6 +56,7 @@ const App = () => {
       path: "/",
       element: <Home
         leaderboardData={getLeaderboard(gameResults)}
+        generalFacts={getGeneralFacts(gameResults)}
         setTitle={setTitle}
       />
     },
