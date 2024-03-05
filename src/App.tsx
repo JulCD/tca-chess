@@ -39,6 +39,8 @@ const dummyGameResults: GameResult[] = [
 ];
 
 const App = () => {
+  //uncomment line to run without dummy game results
+  //const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
 
