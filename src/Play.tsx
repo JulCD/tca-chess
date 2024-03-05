@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { GameResult } from "./GameResults";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 
 interface PlayProps {
@@ -9,6 +9,8 @@ interface PlayProps {
 }
 
 export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
+
+  const [startState, setStart] = useState(new Date().toISOString())
 
   useEffect(
     () => setTitle("Play Chess")
@@ -31,6 +33,8 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
                   "Tom"
                   , "Taylor"
                 ]
+                , start: startState
+                , end: new Date().toISOString()
               });
               nav(-2); 
             }}
