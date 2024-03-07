@@ -62,7 +62,7 @@ export const Home: FC<HomeProps> = ({
                                     Last Played
                                 </td>
                                 <td>
-                                    {generalFacts.lastPlayed} ago
+                                    {generalFacts.lastPlayed}
                                 </td>
                             </tr>
                             <tr>

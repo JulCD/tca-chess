@@ -73,17 +73,23 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
     return {
         totalGames: results.length
         , lastPlayed: 
-            formatterYMD(
+            results.length 
+            ? `${formatterYMD(
                 now - Math.max(...gameEndDatesInMilliseconds)
-            ) as string
+            )} ago`
+            : "n/a"
         , shortestGame: 
-            formatterDefault(
+            results.length
+            ? formatterDefault(
                 Math.min(...gameDurationsInMilliseconds)
         ) as string
+        : "n/a"
         , longestGame: 
-            formatterDefault(
+            results.length
+            ? formatterDefault(
                 Math.max(...gameDurationsInMilliseconds)
         ) as string
+        : "n/a"
     };
 };
 
