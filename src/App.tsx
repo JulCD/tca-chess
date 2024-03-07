@@ -16,11 +16,8 @@ const dummyGameResults: GameResult[] = [
   {
       winner: "Tom"
       , players: [
-          "Tom"
-          , "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
+          { name: "Tom", color: "black"}
+          , { name: "Julia", color: "white"}
       ]
       , start: "2024-02-28T18:10:32.123Z"
       , end: "2024-02-28T18:15:34.123Z"
@@ -28,10 +25,8 @@ const dummyGameResults: GameResult[] = [
   , {
       winner: "John"
       , players: [
-          "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
+        { name: "John", color: "black"}
+        , { name: "Julia", color: "white"}
       ]
       , start: "2024-02-28T18:20:32.123Z"
       , end: "2024-02-28T18:47:34.123Z"

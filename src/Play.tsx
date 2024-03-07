@@ -30,8 +30,8 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
               addNewGameResult({
                 winner: "Tom"
                 , players: [
-                  "Tom"
-                  , "Taylor"
+                  { name: "Tom", color: "white" }
+                  , {name: "Taylor", color: "black"} 
                 ]
                 , start: startState
                 , end: new Date().toISOString()

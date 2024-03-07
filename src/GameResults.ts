@@ -6,9 +6,14 @@ const formatterYMD = durationFormatter({
 });
 // Type definitions...
 
+export type ChessPlayer = {
+    name: string;
+    color: "white" | "black";
+};
+
 export type GameResult = {
     winner: string;
-    players: string[];
+    players: ChessPlayer[];
     start: string;
     end: string;
 };
@@ -34,7 +39,7 @@ export const getPreviousPlayers = (results: GameResult[]) => {
 
     const previousPlayers = results.flatMap(
         x => x.players
-    );
+    ).map(x => x.name);
 
     return [
         ...new Set(previousPlayers)
@@ -100,7 +105,7 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
     const playerWins = results.filter(x => x.winner === player).length;
     const playerGames = results.filter(
         x => x.players.some(
-            y => y === player
+            y => y.name === player
         )
     ).length;
 
