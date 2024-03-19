@@ -9,7 +9,7 @@ import {
 import { Home, AppTitle } from "./Home"
 import { Setup } from "./Setup"
 import { Play } from "./Play"
-import { GameResult, getLeaderboard, getGeneralFacts } from './GameResults';
+import { GameResult, getLeaderboard, getGeneralFacts, getPreviousPlayers } from './GameResults';
 
 
 const dummyGameResults: GameResult[] = [
@@ -61,6 +61,7 @@ const App = () => {
       path: "/setup",
       element: <Setup 
         setTitle={setTitle}
+        previousPlayers = {getPreviousPlayers(gameResults)}
       />
     },
     {
