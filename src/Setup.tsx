@@ -1,13 +1,15 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TransformStreamDefaultController } from "stream/web";
+import { ChessPlayer } from "./GameResults";
 
 interface SetupProps {
-    setTitle: (t: string) => void;
+    setTitle: (title: string) => void;
     previousPlayers: string[];
+    setChosenPlayers: (players: ChessPlayer[]) => void;
 };
 
-export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers }) => {
+export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlayers }) => {
 
     console.log(previousPlayers)
 
@@ -30,7 +32,17 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers }) => {
         >
             <button
                 className="btn btn-lg btn-primary"
-                onClick={() => nav('/play')}
+                onClick={
+                    () => {
+                        setChosenPlayers(
+                        availablePlayers.filter(x => x.checked).map(x => ({
+                            name: x.name
+                            , color: "white"
+                        }))
+                        );
+                        nav('/play')
+                    }   
+                }   
                 disabled={availablePlayers.filter(x => x.checked).length < 2}
             >
                 Start the Game

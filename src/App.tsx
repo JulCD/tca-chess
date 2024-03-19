@@ -9,7 +9,7 @@ import {
 import { Home, AppTitle } from "./Home"
 import { Setup } from "./Setup"
 import { Play } from "./Play"
-import { GameResult, getLeaderboard, getGeneralFacts, getPreviousPlayers } from './GameResults';
+import { GameResult, getLeaderboard, getGeneralFacts, getPreviousPlayers, ChessPlayer } from './GameResults';
 
 
 const dummyGameResults: GameResult[] = [
@@ -41,6 +41,8 @@ const App = () => {
 
   const [title, setTitle] = useState(AppTitle);
 
+  const [chosenPlayers, setChosenPlayers] = useState<ChessPlayer[]>([]);
+
   const addNewGameResult = (result: GameResult) => setGameResults(
     [
       ...gameResults
@@ -62,6 +64,7 @@ const App = () => {
       element: <Setup 
         setTitle={setTitle}
         previousPlayers = {getPreviousPlayers(gameResults)}
+        setChosenPlayers = {setChosenPlayers}
       />
     },
     {
@@ -69,6 +72,7 @@ const App = () => {
       element: <Play
         addNewGameResult={addNewGameResult}
         setTitle={setTitle}
+        chosenPlayers={chosenPlayers}
       />
     }
   ]);
@@ -79,8 +83,8 @@ const App = () => {
       <div className='navbar bg-base-300'>
         {
           title === AppTitle &&
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
         </svg>        
         }
         <span className='text-lg font-bold ml-3'>
