@@ -65,7 +65,7 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlay
                                 >
                                     <input 
                                         type="checkbox" 
-                                        className="checkbox checkbox-success"
+                                        className="checkbox checkbox-success checkbox-lg"
                                         checked={x.checked}
                                         onChange={() => setAvailablePlayers([
                                             ...availablePlayers.map(y => ({
@@ -77,7 +77,7 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlay
                                         ])} 
                                     />
                                     <span 
-                                        className="label-text ml-3"
+                                        className="label-text ml-3 text-lg"
                                     >
                                         {x.name}
                                     </span>
