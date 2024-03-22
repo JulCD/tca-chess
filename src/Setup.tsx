@@ -18,6 +18,8 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlay
         , checked: false
     })));
 
+    const [newPlayerName, setNewPlayerName] = useState("");
+
     useEffect(
         () => setTitle("Game Setup")
         , []
@@ -25,6 +27,28 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlay
     //Hooks and state at the top 
 
     const nav = useNavigate();
+
+    const validateAndAddNewPlayer = () => {
+
+        if (
+            newPlayerName.length > 0
+            && !availablePlayers.some(x => x.name.toUpperCase() === newPlayerName.toUpperCase() )
+        ) {
+            setAvailablePlayers(
+                [
+                ...availablePlayers
+                , {
+                    name: newPlayerName
+                    , checked: true
+                }
+                ].sort((a, b) => a.name.localeCompare(b.name))
+            );
+    
+            setNewPlayerName("");
+        }
+
+        
+    };
 
     return (
         <div
@@ -54,6 +78,23 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlay
                 <div
                     className='card-body p-3'
                 >
+                    <div
+                        className="flex items-center mb-5"
+                    >
+                        <input 
+                            type="text" 
+                            placeholder="Enter new player name" 
+                            className="input input-bordered input-primary w-full max-w-xs" 
+                            value={newPlayerName}
+                            onChange={(e) => setNewPlayerName(e.target.value)}
+                        />
+                        <button
+                            className="btn btn-md btn-secondary ml-3"
+                            onClick={validateAndAddNewPlayer}
+                        >
+                            Add
+                        </button>
+                    </div>
                     {
                         availablePlayers.map(x => (
                             <div 
