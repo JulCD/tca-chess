@@ -67,7 +67,7 @@ export const Setup: FC<SetupProps> = ({ setTitle, previousPlayers, setChosenPlay
                         nav('/play')
                     }   
                 }   
-                disabled={availablePlayers.filter(x => x.checked).length < 2}
+                disabled={availablePlayers.filter(x => x.checked).length != 2}
             >
                 Start the Game
             </button>
