@@ -19,38 +19,51 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
   );
 
 
-    const nav = useNavigate();
+  const nav = useNavigate();
 
-    const gameOver = (winner: string) => {
-      addNewGameResult({
-        winner: winner
-        , players: chosenPlayers
-        , start: startState
-        , end: new Date().toISOString()
-      });
-      nav(-2); 
-    }
+  const gameOver = (winner: string) => {
+    addNewGameResult({
+      winner: winner
+      , players: chosenPlayers
+      , start: startState
+      , end: new Date().toISOString()
+    });
+    nav(-2);
+  }
 
-    return (
-      <div
-        className="flex flex-col gap-3"
-      >
-        {
-          chosenPlayers.map(x => (
-            <button 
-            key = {x.name}
-            className="btn btn-lg btn-primary"
+  return (
+    <div
+      className="flex flex-col gap-3"
+    >
+      {
+        chosenPlayers.map(x => (
+
+          
+
+            <div
+            key={x.name}
+            className="card bg-base-100 shadow-xl"
+          >
+            <div
+              className="card-body p-3"
+            >
+              <h2
+                className="card-title"
+              >
+                {x.name}
+              </h2>
+
+              <button
+            key={x.name}
+            className="btn btn-outline btn-primary"
             onClick={() => gameOver(x.name)}
-        >
-            {x.name} Won
-        </button>
-          ))
-        }
-        <p
-          className="text-xs"
-        >
-          Play the game and tap the app!
-        </p>
-      </div>
-    );
+          >
+              {x.name} Won
+            </button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  );
 };
