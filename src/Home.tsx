@@ -8,13 +8,21 @@ interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
+    avgGameDurationsByPlayerCount: {
+        numberOfPlayers:number;
+        avgGameDuration: any;
+    }[];
 }
 
 export const Home: FC<HomeProps> = ({ 
     leaderboardData
     , setTitle
     , generalFacts
+    , avgGameDurationsByPlayerCount
  }) => {
+
+
+    console.log(avgGameDurationsByPlayerCount);
 
     useEffect(
         () => setTitle(AppTitle)
@@ -134,12 +142,61 @@ export const Home: FC<HomeProps> = ({
                                     </tbody>
                                 </table>
                             )
+                            
                             : (
                                 <p>
                                     Play a game to see the leaderboard!
                                 </p>
                             )
                     }
+                    
+                </div>
+            </div>
+            <div
+                className="card bg-base-100 shadow-xl"
+            >
+                <div
+                    className="card-body p-3"
+                >
+                    <h2
+                        className="card-title text-nowrap"
+                    >
+                        Average Game Times
+                    </h2>
+                    {
+                        avgGameDurationsByPlayerCount.length > 0
+                            ? (
+                                <table
+                                    className="table"
+                                >
+                                    <thead>
+                                        <tr>
+                                            Avg Duration
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            avgGameDurationsByPlayerCount.map(agdbpc => (
+                                                <tr
+                                                    key={agdbpc.avgGameDuration}
+                                                >
+                                                    <td>
+                                                        {agdbpc.avgGameDuration}
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                            
+                            : (
+                                <p>
+                                    Play a game to see the leaderboard!
+                                </p>
+                            )
+                    }
+                    
                 </div>
             </div>
         </div>
