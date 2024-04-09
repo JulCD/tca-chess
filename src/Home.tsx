@@ -166,28 +166,18 @@ export const Home: FC<HomeProps> = ({
                     {
                         avgGameDurationsByPlayerCount.length > 0
                             ? (
-                                <table
-                                    className="table"
-                                >
-                                    <thead>
-                                        <tr>
-                                            Avg Duration
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
+                                        
                                             avgGameDurationsByPlayerCount.map(agdbpc => (
-                                                <tr
+                                                
+                                                <h1 
+                                                    className="text-sm"
                                                     key={agdbpc.avgGameDuration}
                                                 >
-                                                    <td>
-                                                        {agdbpc.avgGameDuration}
-                                                    </td>
-                                                </tr>
+                                                    {agdbpc.avgGameDuration}
+                                                </h1>
+
                                             ))
-                                        }
-                                    </tbody>
-                                </table>
+                                        
                             )
                             
                             : (
