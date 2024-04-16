@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import {
@@ -17,7 +17,7 @@ import {
   , ChessPlayer
   , getAverageGameDurationsByPlayerCount
 } from './GameResults';
-import { saveGameToCloud } from './tca-cloud-api';
+import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
 
 
 const App = () => {
@@ -29,6 +29,31 @@ const App = () => {
   const [chosenPlayers, setChosenPlayers] = useState<ChessPlayer[]>([]);
 
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(
+    () => {
+      const init = async () => {
+        
+        if (!ignore) {
+          const cloudGameResults = await loadGamesFromCloud(
+            "julia.cd345@gmail.com"
+            , "tca-chess-24s"
+          );
+
+          setGameResults(cloudGameResults);
+        }
+      };
+
+      let ignore = false;
+
+      init();
+
+      return () => {
+        ignore = true;
+      };
+    }
+    , []
+  );
 
   const addNewGameResult = async (result: GameResult) => {
 
