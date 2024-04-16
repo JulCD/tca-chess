@@ -38,9 +38,9 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
       {
         chosenPlayers.map(x => (
 
-          
 
-            <div
+
+          <div
             key={x.name}
             className="card bg-base-100 shadow-xl"
           >
@@ -54,12 +54,12 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
               </h2>
 
               <button
-            key={x.name}
-            className="btn btn-outline btn-primary"
-            onClick={() => gameOver(x.name)}
-          >
-              {x.name} Won
-            </button>
+                key={x.name}
+                className="btn btn-outline btn-primary"
+                onClick={() => gameOver(x.name)}
+              >
+                {x.name} Won
+              </button>
             </div>
           </div>
         ))

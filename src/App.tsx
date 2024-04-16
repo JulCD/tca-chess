@@ -9,14 +9,15 @@ import {
 import { Home, AppTitle } from "./Home"
 import { Setup } from "./Setup"
 import { Play } from "./Play"
-import { 
+import {
   GameResult
   , getLeaderboard
   , getGeneralFacts
   , getPreviousPlayers
-  , ChessPlayer 
+  , ChessPlayer
   , getAverageGameDurationsByPlayerCount
 } from './GameResults';
+import { saveGameToCloud } from './tca-cloud-api';
 
 
 const dummyGameResults: GameResult[] = [
@@ -52,12 +53,23 @@ const App = () => {
 
   const [darkMode, setDarkMode] = useState(false);
 
-  const addNewGameResult = (result: GameResult) => setGameResults(
-    [
-      ...gameResults
+  const addNewGameResult = async (result: GameResult) => {
+
+    //Save game result to the cloud 
+    await saveGameToCloud(
+      "julia.cd345@gmail.com" //hardcoded for now
+      , "tca-chess-24s"
+      , result.end 
       , result
-    ]
-  );
+    )
+    //Optimistically update the lifted state with the new game result 
+    setGameResults(
+      [
+        ...gameResults
+        , result
+      ]
+    );
+  };
 
   const router = createHashRouter([
     {
@@ -89,7 +101,7 @@ const App = () => {
 
 
   return (
-    <div 
+    <div
       className="App"
       data-theme={darkMode ? "dark" : "nord"}
     >
@@ -109,8 +121,8 @@ const App = () => {
           <label className="swap swap-rotate">
 
             {/* this hidden checkbox controls the state */}
-            <input 
-              type="checkbox"  
+            <input
+              type="checkbox"
               checked={darkMode}
               onChange={() => setDarkMode(!darkMode)}
             />
