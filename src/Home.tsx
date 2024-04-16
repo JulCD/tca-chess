@@ -182,7 +182,7 @@ export const Home: FC<HomeProps> = ({
                             
                             : (
                                 <p>
-                                    Play a game to see the leaderboard!
+                                    Play a game to see the average game times!
                                 </p>
                             )
                     }

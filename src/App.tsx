@@ -20,32 +20,9 @@ import {
 import { saveGameToCloud } from './tca-cloud-api';
 
 
-const dummyGameResults: GameResult[] = [
-  {
-    winner: "Tom"
-    , players: [
-      { name: "Tom", color: "black" }
-      , { name: "Julia", color: "white" }
-    ]
-    , start: "2024-02-28T18:10:32.123Z"
-    , end: "2024-02-28T18:15:34.123Z"
-  }
-  , {
-    winner: "John"
-    , players: [
-      { name: "John", color: "black" }
-      , { name: "Julia", color: "white" }
-    ]
-    , start: "2024-02-28T18:20:32.123Z"
-    , end: "2024-02-28T18:47:34.123Z"
-  }
-];
-
 const App = () => {
-  //uncomment line to run without dummy game results
-  //const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
-  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
 
