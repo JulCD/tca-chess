@@ -18,6 +18,7 @@ import {
   , getAverageGameDurationsByPlayerCount
 } from './GameResults';
 import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
+import localforage from 'localforage';
 
 
 const App = () => {
@@ -32,17 +33,33 @@ const App = () => {
 
   const [darkMode, setDarkMode] = useState(false);
 
+  const [dialogEmail, setDialogEmail] = useState("");
+
+  const [cloudApiEmail, setCloudApiEmail] = useState("");
+
   useEffect(
     () => {
       const init = async () => {
 
         if (!ignore) {
-          const cloudGameResults = await loadGamesFromCloud(
-            "julia.cd345@gmail.com"
-            , "tca-chess-24s"
-          );
 
-          setGameResults(cloudGameResults);
+          const savedEmail = await localforage.getItem<string>("email") ?? "";
+
+          if (savedEmail.length > 0) {
+
+            setCloudApiEmail(savedEmail);
+            setDialogEmail(savedEmail);
+
+            const cloudGameResults = await loadGamesFromCloud(
+              savedEmail
+              , "tca-chess-24s"
+            );
+
+            setGameResults(cloudGameResults);
+          } 
+          else {
+            dialogRef.current?.showModal()
+          }
         }
       };
 
@@ -54,14 +71,14 @@ const App = () => {
         ignore = true;
       };
     }
-    , []
+    , [cloudApiEmail]
   );
 
   const addNewGameResult = async (result: GameResult) => {
 
     //Save game result to the cloud 
     await saveGameToCloud(
-      "julia.cd345@gmail.com" //hardcoded for now
+      cloudApiEmail
       , "tca-chess-24s"
       , result.end
       , result
@@ -152,28 +169,39 @@ const App = () => {
       <div className='p-3'>
         <RouterProvider router={router} />
       </div>
-      <dialog 
+      <dialog
         ref={dialogRef}
-        id="email-dialog" 
+        id="email-dialog"
         className="modal modal-bottom sm:modal-middle"
       >
-        <div 
+        <div
           className="modal-box"
         >
-          <h3 
+          <h3
             className="font-bold text-lg"
           >
-              Enter email address for saving game results
+            Enter email address for saving game results
           </h3>
-          <div 
+          <input
+            type="text"
+            placeholder="Email address"
+            className="input input-bordered input-primary w-full mt-3"
+            value={dialogEmail}
+            onChange={(e) => setDialogEmail(e.target.value)}
+          />
+          <div
             className="modal-action"
           >
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button 
+              <button
                 className="btn btn-primary"
+                onClick={async () => {
+                  await localforage.setItem<string>("email", dialogEmail);
+                  setCloudApiEmail(dialogEmail);
+                }}
               >
-                Done
+                Save
               </button>
             </form>
           </div>
