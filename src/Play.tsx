@@ -11,7 +11,10 @@ interface PlayProps {
 
 export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers }) => {
 
-  const [startState, setStart] = useState(new Date().toISOString())
+  const [startState, setStart] = useState(new Date().toISOString());
+
+  const [whitePiecePlayer, setWhitePiecePlayer] = useState("");
+
 
   useEffect(
     () => setTitle("Play Chess")
@@ -24,7 +27,7 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
   const gameOver = (winner: string) => {
     addNewGameResult({
       winner: winner
-      , players: chosenPlayers
+      , players: chosenPlayers.map(x => ({name: x.name, color: x.name === whitePiecePlayer ? "white" : "black"}))
       , start: startState
       , end: new Date().toISOString()
     });
@@ -52,6 +55,22 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
               >
                 {x.name}
               </h2>
+
+              <label
+                className="cursor-pointer flex"
+              >
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-success checkbox-lg"
+                  checked={x.name === whitePiecePlayer}
+                  onChange={() => setWhitePiecePlayer(x.name)}
+                />
+                <span
+                  className="label-text ml-3 text-lg"
+                >
+                  White Pieces
+                </span>
+              </label>
 
               <button
                 key={x.name}
