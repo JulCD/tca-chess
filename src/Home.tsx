@@ -161,7 +161,7 @@ export const Home: FC<HomeProps> = ({
                     <h2
                         className="card-title text-nowrap"
                     >
-                        Average Game Times
+                        Average Game Time
                     </h2>
                     {
                         avgGameDurationsByPlayerCount.length > 0
@@ -186,6 +186,20 @@ export const Home: FC<HomeProps> = ({
                                 </p>
                             )
                     }
+                    
+                </div>
+            </div>
+            <div
+                className="card bg-base-100 shadow-xl"
+            >
+                <div
+                    className="card-body p-3"
+                >
+                    <h2
+                        className="card-title"
+                    >
+                        Average White Pieces Chosen
+                    </h2>
                     
                 </div>
             </div>

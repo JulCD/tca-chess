@@ -166,7 +166,7 @@ const App = () => {
           </label>
         </div>
       </div>
-      <div className='p-3'>
+      <div className='p-3 min-h-screen'>
         <RouterProvider router={router} />
       </div>
       <dialog
