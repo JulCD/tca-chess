@@ -16,6 +16,7 @@ import {
   , getPreviousPlayers
   , ChessPlayer
   , getAverageGameDurationsByPlayerCount
+  , getWhitePiecePercentData
 } from './GameResults';
 import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
 import localforage from 'localforage';
@@ -100,6 +101,7 @@ const App = () => {
         generalFacts={getGeneralFacts(gameResults)}
         setTitle={setTitle}
         avgGameDurationsByPlayerCount={getAverageGameDurationsByPlayerCount(gameResults)}
+        whitePieceData={getWhitePiecePercentData(gameResults)}
       />
     },
     {

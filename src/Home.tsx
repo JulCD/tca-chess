@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { GeneralFacts, LeaderboardEntry } from "./GameResults";
+import { GeneralFacts, LeaderboardEntry, WhitePiecePercentEntry } from "./GameResults";
 import { FC, useEffect } from "react";
+
 
 export const AppTitle = "Chess Companion App";
 
@@ -12,6 +13,7 @@ interface HomeProps {
         numberOfPlayers:number;
         avgGameDuration: any;
     }[];
+    whitePieceData: WhitePiecePercentEntry[]
 }
 
 export const Home: FC<HomeProps> = ({ 
@@ -19,6 +21,7 @@ export const Home: FC<HomeProps> = ({
     , setTitle
     , generalFacts
     , avgGameDurationsByPlayerCount
+    , whitePieceData
  }) => {
 
 
@@ -201,6 +204,44 @@ export const Home: FC<HomeProps> = ({
                         Average White Pieces Chosen
                     </h2>
                     
+                    {
+                        whitePieceData.length > 0
+                            ? (
+                                <table
+                                    className="table"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th>Player</th>
+                                            <th>White Piece Average</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            whitePieceData.map(x => (
+                                                <tr
+                                                    key={x.name}
+                                                >
+                                                    <td>
+                                                        {x.name}
+                                                    </td>
+                                                    <td>
+                                                        {x.percent}
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                            
+                            : (
+                                <p>
+                                    Play a game to see the average amount white pieces are chosen!
+                                </p>
+                            )
+                    }
                 </div>
             </div>
         </div>
